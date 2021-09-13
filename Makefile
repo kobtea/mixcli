@@ -4,7 +4,7 @@ setup:
 	go get golang.org/x/tools/cmd/goimports
 
 lint:
-	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:v1.42.0 golangci-lint run -E golint,gofmt,goimports
+	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:v1.42.0 golangci-lint run -E gofmt,goimports
 
 fmt:
 	go fmt ./...

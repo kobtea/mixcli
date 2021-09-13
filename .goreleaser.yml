@@ -1,0 +1,44 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - flags: -a -tags netgo
+    ldflags:
+      - -s -w
+      - -X github.com/kobtea/mixcli/cmd.Version={{.Version}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    goarm:
+      - 6
+      - 7
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: linux
+        goarch: arm
+        goarm: 7
+nfpms:
+  - homepage: https://github.com/kobtea/mixcli
+    maintainer: Hiroaki Kobayashi <kobtea9696@gmail.com>
+    description: cli for monitoring mixins
+    license: Apache 2.0
+    formats:
+      - apk
+      - deb
+      - rpm
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^release'
+      - 'typo'

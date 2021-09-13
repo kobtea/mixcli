@@ -1,9 +1,7 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
 
 env:
   CGO_ENABLED: 0
@@ -38,15 +36,3 @@ jobs:
         run: make build
       - name: Test
         run: make test
-
-  tag:
-    name: tag
-    runs-on: ubuntu-latest
-    needs:
-      - lint
-      - build
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PERSONAL_TOKEN }}
-      - uses: kobtea/release-tag-action@v0
