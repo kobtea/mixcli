@@ -25,6 +25,10 @@ builds:
       - goos: linux
         goarch: arm
         goarm: 7
+      - goos: windows
+        goarch: arm
+      - goos: windows
+        goarch: arm64
 nfpms:
   - homepage: https://github.com/kobtea/mixcli
     maintainer: Hiroaki Kobayashi <kobtea9696@gmail.com>
