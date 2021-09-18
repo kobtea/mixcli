@@ -13,9 +13,6 @@ import (
 var alertCmd = &cobra.Command{
 	Use:   "alert",
 	Short: "prometheus alert",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("alert called")
-	},
 }
 
 var alertCompressCmd = &cobra.Command{
@@ -54,7 +51,7 @@ var alertCompressCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(alertCmd)
-
+	alertCmd.AddCommand(ruleAnalyzeCmd)
 	alertCmd.AddCommand(alertCompressCmd)
 	alertCompressCmd.Flags().Int("max-rule", 0, "max rules per group")
 	alertCompressCmd.Flags().Int("max-group", 0, "max groups")
