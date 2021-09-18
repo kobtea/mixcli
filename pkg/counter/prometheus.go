@@ -16,11 +16,7 @@ type Output struct {
 }
 
 func (c Counter) Add(s string) {
-	if _, ok := c[s]; ok {
-		c[s] += 1
-	} else {
-		c[s] = 1
-	}
+	c[s] += 1
 }
 
 func (c Counter) MarshalJSON() ([]byte, error) {
